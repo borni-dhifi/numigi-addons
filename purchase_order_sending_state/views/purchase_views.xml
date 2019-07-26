@@ -1,0 +1,57 @@
+<?xml version="1.0" ?>
+<odoo>
+
+    <!--
+        Add two filters Order sent and To send in search view.
+    -->
+
+    <record id="view_purchase_order_filter_inherit_po_sent" model="ir.ui.view">
+        <field name="name">purchase.order.list.select.inherit</field>
+        <field name="model">purchase.order</field>
+        <field name="inherit_id" ref="purchase.view_purchase_order_filter"/>
+        <field name="arch" type="xml">
+            <xpath expr="//filter[@name='to_approve']" position="after">
+                <separator/>
+                <filter name="order_sent" string="Order sent" domain="[('po_sent', '=', True)]"/>
+                <filter name="to_sent" string="To send" domain="[('po_sent', '=', False)]"/>
+            </xpath>
+        </field>
+    </record>
+
+    <!--
+        Add field Sent to Supplier in form view.
+    -->
+
+    <record id="purchase_order_form_inherit_po_sent" model="ir.ui.view">
+        <field name="name">purchase.order.view.form.inherit.po_sent</field>
+        <field name="model">purchase.order</field>
+        <field name="inherit_id" ref="purchase.purchase_order_form"/>
+        <field name="arch" type="xml">
+            <field name="origin" position="after">
+                <field name="po_sent"/>
+            </field>
+        </field>
+    </record>
+
+    <!--
+        Mass-mailing wizard to Send Orders.
+    -->
+
+    <act_window name="Send Orders"
+                res_model="mail.compose.message"
+                src_model="purchase.order"
+                view_mode="form"
+                multi="True"
+                target="new"
+                key2="client_action_multi"
+                id="action_purchase_order_mass_mail"
+                context="{
+                            'default_composition_mode': 'mass_mail',
+                            'default_partner_to': '${object.partner_id.id or \'\'}',
+                            'default_use_template': True,
+                            'mark_rfq_as_sent': True,
+                            'default_template_id': ref('purchase.email_template_edi_purchase_done'),
+
+                        }"/>
+
+</odoo>
