@@ -10,6 +10,6 @@
     'license': 'LGPL-3',
     'category': 'Other',
     'summary': 'Install all addons required for testing.',
-    'depends': [],
+    'depends': ['purchase_order_sending_state'],
     'installable': True,
 }
