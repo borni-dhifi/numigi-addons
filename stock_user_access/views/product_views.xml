@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Product Template form view : smart button-->
+
+    <record id="product_template_form_view_procurement_button_inherit_user_access" model="ir.ui.view">
+        <field name="name">product.template.form.inherit.user.access</field>
+        <field name="inherit_id" ref="stock.product_template_form_view_procurement_button"/>
+        <field name="model">product.template</field>
+        <field name="arch" type="xml">
+            <xpath expr="//button[@name='action_open_quants']" position="attributes">
+                <attribute name="groups">
+                    stock.group_stock_manager,purchase.group_purchase_manager,sales_team.group_sale_manager
+                </attribute>
+            </xpath>
+            <xpath expr="//button[@name='%(stock.action_stock_level_forecast_report_template)d']" position="attributes">
+                <attribute name="groups">
+                    stock.group_stock_manager,purchase.group_purchase_manager,sales_team.group_sale_manager
+                </attribute>
+            </xpath>
+        </field>
+    </record>
+
+    <!-- Product variant form view : smart button-->
+
+    <record id="product_form_view_procurement_button_inherit_user_access" model="ir.ui.view">
+        <field name="name">product.product.form.inherit.user.access</field>
+        <field name="inherit_id" ref="stock.product_form_view_procurement_button"/>
+        <field name="model">product.product</field>
+        <field name="arch" type="xml">
+            <xpath expr="//button[@name='%(stock.product_open_quants)d']" position="attributes">
+                <attribute name="groups">
+                    stock.group_stock_manager,purchase.group_purchase_manager,sales_team.group_sale_manager
+                </attribute>
+            </xpath>
+            <xpath expr="//button[@name='%(stock.action_stock_level_forecast_report_product)d']" position="attributes">
+                <attribute name="groups">
+                    stock.group_stock_manager,purchase.group_purchase_manager,sales_team.group_sale_manager
+                </attribute>
+            </xpath>
+        </field>
+    </record>
+
+    <!-- Product Template tree view-->
+
+    <record id="view_stock_product_template_tree_inherit_user_access" model="ir.ui.view">
+        <field name="name">product.template.tree.inherit.user.access</field>
+        <field name="inherit_id" ref="stock.view_stock_product_template_tree"/>
+        <field name="model">product.template</field>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='qty_available']" position="attributes">
+                <attribute name="groups">
+                    stock.group_stock_manager,purchase.group_purchase_manager,sales_team.group_sale_manager
+                </attribute>
+            </xpath>
+            <xpath expr="//field[@name='virtual_available']" position="attributes">
+                <attribute name="groups">
+                    stock.group_stock_manager,purchase.group_purchase_manager,sales_team.group_sale_manager
+                </attribute>
+            </xpath>
+        </field>
+    </record>
+
+    <!-- Product variant tree view-->
+
+    <record id="view_stock_product_tree_inherit_user_access" model="ir.ui.view">
+        <field name="name">product.product.tree.inherit.user.access</field>
+        <field name="inherit_id" ref="stock.view_stock_product_tree"/>
+        <field name="model">product.product</field>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='qty_available']" position="attributes">
+                <attribute name="groups">
+                    stock.group_stock_manager,purchase.group_purchase_manager,sales_team.group_sale_manager
+                </attribute>
+            </xpath>
+            <xpath expr="//field[@name='virtual_available']" position="attributes">
+                <attribute name="groups">
+                    stock.group_stock_manager,purchase.group_purchase_manager,sales_team.group_sale_manager
+                </attribute>
+            </xpath>
+        </field>
+    </record>
+
+    <!-- Product Template kanban view-->
+
+    <record id="product_template_kanban_stock_view_inherit_user_access" model="ir.ui.view">
+        <field name="name">product.template.kanban.inherit.user.access</field>
+        <field name="inherit_id" ref="stock.product_template_kanban_stock_view"/>
+        <field name="model">product.template</field>
+        <field name="arch" type="xml">
+            <xpath expr="//li[@t-if][last()]" position="attributes">
+                <attribute name="groups">
+                    stock.group_stock_manager,purchase.group_purchase_manager,sales_team.group_sale_manager
+                </attribute>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>
+
+

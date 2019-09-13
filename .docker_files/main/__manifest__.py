@@ -11,6 +11,7 @@
     'category': 'Other',
     'summary': 'Install all addons required for testing.',
     'depends': ['purchase_order_sending_state',
-                'stock_move_line_auto_fill'],
+                'stock_move_line_auto_fill',
+                'stock_user_access'],
     'installable': True,
 }
